@@ -73,6 +73,16 @@ const faqs = [
   { q: "Vocês enviam para todo o Brasil?", a: "Sim, entregamos em todos os estados. Frete grátis em compras acima de R$ 299 para as regiões Sul e Sudeste." },
 ];
 
+function Logo() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="36" height="36" rx="8" fill="oklch(0.22 0.01 60)" />
+      <path d="M18 8l2.5 5.5L26 14l-5.5 2.5L18 22l-2.5-5.5L10 14l5.5-2.5L18 8z" fill="oklch(0.985 0.003 90)" />
+      <path d="M18 12l1.2 2.6L22 15.5l-2.8 1.1L18 19.5l-1.2-2.9L14 15.5l2.8-.9L18 12z" fill="oklch(0.62 0.11 55)" />
+    </svg>
+  );
+}
+
 function formatPrice(v: number) {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
@@ -104,8 +114,8 @@ function Home() {
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 py-4 flex items-center gap-6">
           <button className="lg:hidden" aria-label="Menu"><Menu className="w-5 h-5" /></button>
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground grid place-items-center font-display text-lg">N</div>
+          <a href="#" className="flex items-center gap-2.5">
+            <Logo />
             <div className="leading-tight">
               <div className="font-display text-xl">Nova Prime</div>
               <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Store</div>
@@ -375,8 +385,8 @@ function Home() {
       <footer className="border-t border-border bg-surface-muted/50">
         <div className="mx-auto max-w-7xl px-4 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground grid place-items-center font-display text-lg">N</div>
+            <div className="flex items-center gap-2.5">
+              <Logo />
               <div className="font-display text-xl">Nova Prime Store</div>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
