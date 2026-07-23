@@ -1,10 +1,13 @@
-<!-- LOVABLE:BEGIN -->
-> [!IMPORTANT]
-> This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
-> published git history — force pushing, or rebasing/amending/squashing commits
-> that are already pushed — as it rewrites history on Lovable's side and the
-> user will likely lose their project history.
->
-> Commits you push to the connected branch sync back to Lovable and show up in
-> the editor, so keep the branch in a working state.
-<!-- LOVABLE:END -->
+# Nova Prime Store
+
+## Comandos
+
+- `npm run dev` — inicia servidor de desenvolvimento
+- `npm run build` — build de produção
+- `npm run preview` — preview do build
+- `npm run lint` — verifica lint
+- `npm run format` — formata código
+
+## Hospedagem
+
+O site é hospedado via GitHub Pages. O deploy automático acontece via GitHub Actions ao fazer push para a branch `main`.
