@@ -1,8 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext } from "@tanstack/react-router";
 
-import appCss from "../styles.css?url";
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -72,13 +70,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/218e0597-afee-483c-9a3b-9bc726654505/id-preview-c6f9c949--a0fb4014-7985-49f1-b955-ee47c2331c05.lovable.app-1784667447490.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/218e0597-afee-483c-9a3b-9bc726654505/id-preview-c6f9c949--a0fb4014-7985-49f1-b955-ee47c2331c05.lovable.app-1784667447490.png" },
     ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-    ],
+    links: [],
   }),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
