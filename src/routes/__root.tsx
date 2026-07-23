@@ -1,12 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { Outlet, Link, createRootRouteWithContext } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -87,21 +80,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
 });
-
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <>
-      <HeadContent />
-      {children}
-      <Scripts />
-    </>
-  );
-}
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();

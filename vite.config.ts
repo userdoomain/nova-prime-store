@@ -12,5 +12,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: "/Nova-Prime-Storeess/",
+  base: "/nova-prime-store/",
 });
