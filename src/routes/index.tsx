@@ -212,7 +212,7 @@ function Home() {
       </header>
 
       {/* Hero */}
-      <section className="border-b border-border">
+      <section className="border-b border-border bg-gradient-to-br from-surface-muted via-background to-surface-muted">
         <div className="mx-auto max-w-7xl px-4 py-10 lg:py-16 grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <span className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground">
@@ -263,7 +263,7 @@ function Home() {
       </section>
 
       {/* Trust bar */}
-      <section className="border-b border-border bg-surface-muted/40">
+      <section className="border-b border-border bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 py-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
           <Trust icon={<Truck className="w-5 h-5" />} title="Envio em 24h" text="Para todo o Brasil" />
           <Trust icon={<CreditCard className="w-5 h-5" />} title="Até 12x sem juros" text="Ou 10% off no Pix" />
