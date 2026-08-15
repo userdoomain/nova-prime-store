@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Search,
   ShoppingBag,
@@ -87,9 +87,60 @@ function formatPrice(v: number) {
   return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
+const SCRAMBLE_CHARS = "!<>-_\\/[]{}—=+*^?#________";
+
+function ScrambleText({ text, className }: { text: string; className?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const chars = text.split("");
+    let frame = 0;
+    const total = chars.length;
+    let raf = 0;
+    const tick = () => {
+      const done = Math.floor((frame / 45) * total);
+      let out = "";
+      for (let i = 0; i < chars.length; i++) {
+        out += i < done ? chars[i] : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+      }
+      el.textContent = out;
+      frame++;
+      if (frame <= 45) raf = requestAnimationFrame(tick);
+      else el.textContent = text;
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [text]);
+  return <span ref={ref} className={className}>{text}</span>;
+}
+
+function useMagnetic(strength = 10) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const move = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+      const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+      el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+    };
+    const leave = () => { el.style.transform = "translate(0, 0)"; };
+    el.addEventListener("mousemove", move);
+    el.addEventListener("mouseleave", leave);
+    return () => {
+      el.removeEventListener("mousemove", move);
+      el.removeEventListener("mouseleave", leave);
+    };
+  }, [strength]);
+  return ref;
+}
+
 function Home() {
   const [query, setQuery] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const ctaRef = useMagnetic();
 
   const filtered = useMemo(
     () => (query.trim() ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase()) || p.category.toLowerCase().includes(query.toLowerCase())) : products),
@@ -168,13 +219,12 @@ function Home() {
               <span className="w-8 h-px bg-muted-foreground" /> Coleção Primavera 2026
             </span>
             <h1 className="mt-4 text-5xl lg:text-7xl font-display leading-[0.95]">
-              Curadoria premium <span className="italic text-accent-warm">para o seu dia</span>.
-            </h1>
-            <p className="mt-5 text-muted-foreground max-w-lg">
+              <ScrambleText text="Curadoria premium" /> <span className="italic text-accent-warm">para o seu dia</span>.
+            </h1>            <p className="mt-5 text-muted-foreground max-w-lg">
               Descubra produtos selecionados de tecnologia, moda e casa. Entrega rápida em todo o Brasil, parcelamento em até 12x e atendimento humano quando você precisar.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#destaques" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:opacity-90 transition">
+              <a ref={ctaRef} href="#destaques" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:opacity-90 transition-transform">
                 Comprar agora <ChevronRight className="w-4 h-4" />
               </a>
               <a href="#categorias" className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium hover:bg-surface-muted transition">
