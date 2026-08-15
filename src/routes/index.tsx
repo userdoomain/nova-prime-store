@@ -434,8 +434,7 @@ function Section({ id, eyebrow, title, subtitle, children }: { id?: string; eyeb
     <section id={id} className="mx-auto max-w-7xl px-4 py-14 lg:py-20">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
         <div>
-          <span className="text-xs uppercase tracking-widest text-muted-foreground">{eyebrow}</span>
-          <h2 className="mt-2 font-display text-3xl lg:text-4xl">{title}</h2>
+          <h2 className="font-display text-3xl lg:text-4xl">{title}</h2>
           {subtitle && <p className="mt-2 text-sm text-muted-foreground max-w-xl">{subtitle}</p>}
         </div>
         <a href="#" className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1">
